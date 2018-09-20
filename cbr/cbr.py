@@ -23,7 +23,7 @@ class Table(tk.Frame):
                 width = 150
             table.heading(head, text=head, anchor='c')
             table.column(head, width=width, anchor=anchor)
-        # формируем значение в троках
+        # формируем значение в cтроках
         i = 0
         for row in rows:
             table.insert('', 'end', text='L'+str(i), values=list(row))
