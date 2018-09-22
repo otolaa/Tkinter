@@ -13,3 +13,5 @@ parsing www.cbr.ru/scripts/XML_daily.asp, launching the program: python cbr.py
 parsing yandex.ru/pogoda/moscow/details or yandex.ru/pogoda/saint-petersburg/details, launching the program: python weather.py
 
 ![weather.py](https://github.com/otolaa/Tkinter/blob/master/img/weather.jpg "weather.py")
+## 4. /kinopoisk/kinopoisk.py
+parsing kinopoisk.ru/afisha/city/490/ or kinopoisk.ru/afisha/city/1/, launching the program: python kinopoisk.py
