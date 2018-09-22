@@ -10,4 +10,6 @@ parsing www.cbr.ru/scripts/XML_daily.asp, launching the program: python cbr.py
 ![cbr.py](https://github.com/otolaa/Tkinter/blob/master/img/cbr.jpg "cbr.py")
 
 ## 3. /weather/weather.py
-this is the parsing yandex.ru/pogoda, launching the program: python cbr.py
+parsing www.cbr.ru/scripts/XML_daily.asp, launching the program: python weather.py
+
+![weather.py](https://github.com/otolaa/Tkinter/blob/master/img/weather.jpg "weather.py")
