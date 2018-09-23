@@ -12,7 +12,7 @@ class Table(tk.Frame):
         #
         table = ttk.Treeview(self, show="headings", selectmode="browse")
         table.tag_configure('STYLE_DATE', background='#777777', font=("Verdana", 8, 'bold'), foreground="#fff")
-        table.tag_configure('STYLE_TITLE', background='#e1e1e1', font=("Verdana", 8, 'normal'))
+        table.tag_configure('STYLE_TITLE', background='#e1e1e1', font=("Verdana", 8, 'bold'))
         #
         table["columns"] = headings
         table["displaycolumns"] = headings
