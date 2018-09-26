@@ -1,4 +1,5 @@
 # парсинг расписания фильмов
+import sys
 import requests
 import pickle
 from lxml import html  # для xml для html нужно -- from lxml import html
@@ -74,8 +75,9 @@ def get_html(url):
 	try:
 		page = requests.get(url)
 		return page.text
-	except requests.exceptions.ConnectionError:
-		print('Seems like dns lookup failed..')
+	except Exception: # requests.exceptions.ConnectionError: # Exception:		
+		# вызов кода ошибки
+		print(sys.exc_info()[1])
 		return False
 
 def parseHTML(html_content):
