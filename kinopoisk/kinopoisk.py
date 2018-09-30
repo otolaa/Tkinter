@@ -1,7 +1,7 @@
 # парсинг расписания фильмов
 import sys
 import requests
-import pickle
+import json # сохраняем все в json
 from lxml import html  # для xml для html нужно -- from lxml import html
 # import re, cgi
 import tkinter as tk
@@ -16,22 +16,18 @@ class Table(tk.Frame):
         table.tag_configure('STYLE_TITLE', background='#e1e1e1', font=("Verdana", 8, 'bold'))
         #
         table["columns"] = headings
-        table["displaycolumns"] = headings
-        h = 0
+        table["displaycolumns"] = headings        
         # формируем заголовок таблицы
-        for head in headings:
+        for h,head in enumerate(headings):
             #print (head)
             anchor = 'c' if head == 'ID' or head == 'Name' else 'w'
             width = 400 if h == 2 else 300
             table.heading(head, text=head, anchor='c')
-            table.column(head, width=width, anchor=anchor)
-            h+=1
-        # формируем значение в cтроках
-        i = 0
-        for row in rows:
+            table.column(head, width=width, anchor=anchor)            
+        # формируем значение в cтроках      
+        for i,row in enumerate(rows):
             # p(row)
             table.insert('', 'end', text='L'+str(i), values=list(row[1]), tags=(row[0]))
-            i+=1
 
         scrolltable = tk.Scrollbar(self, command=table.yview)
         table.configure(yscrollcommand=scrolltable.set)
@@ -104,11 +100,11 @@ def main():
 	url = 'https://www.kinopoisk.ru/afisha/city/490/'
 	kino = parseHTML(get_html(url))
 	if kino:
-		with open('kino.pickle', 'wb') as f:
-			pickle.dump(kino, f)
+		with open('kino.txt', 'w', encoding='utf-8') as f:
+			json.dump(kino, f)
 	else:
-		with open('kino.pickle', 'rb') as f:
-			kino = pickle.load(f)
+		with open('kino.txt', 'r', encoding='utf-8') as f:
+			kino = json.load(f)
 	# p(kino['ITEMS'])
 	rows = []
 	for items in kino['ITEMS']:

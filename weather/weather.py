@@ -1,6 +1,7 @@
 # парсинг погоды
+import sys
 import requests
-import pickle
+import json
 from lxml import html  # для xml для html нужно -- from lxml import html
 # import re, cgi
 import tkinter as tk
@@ -16,16 +17,13 @@ class Table(tk.Frame):
         table["columns"] = headings
         table["displaycolumns"] = headings
         # формируем заголовок таблицы
-        h = 0
-        for head in headings:            
+        for h,head in enumerate(headings):            
             anchor = 'c' if h == 2 or h == 3 or h == 5 else 'w'
             width = 50 if head == 'ID' else 100            
             table.heading(head, text=head, anchor='c')
             table.column(head, width=width, anchor=anchor)
-            h+=1
         # формируем значение в cтроках
-        i = 0
-        for row in rows:
+        for i,row in enumerate(rows):
             s = 0
             for rw in row:
                 if s == 0:
@@ -33,7 +31,6 @@ class Table(tk.Frame):
                 else:
                     table.insert('', 'end', text='L'+str(i)+str(s), values=list(rw))   
                 s+=1        
-            i+=1
 
         scrolltable = tk.Scrollbar(self, command=table.yview)
         table.configure(yscrollcommand=scrolltable.set)
@@ -54,9 +51,16 @@ def get_html(url):
     try:
         page = requests.get(url)
         return page.text
-    except requests.exceptions.ConnectionError:
-        print('Seems like dns lookup failed..')
+    except Exception as e:
+        print(sys.exc_info()[1])        
         return False
+
+def isTrue(td5):
+    try:
+        td5 = td5.xpath('div/span/span')[0].text_content() + " " + td5.xpath('div/div/abbr')[0].attrib["title"]
+        return td5
+    except Exception as e:
+        return td5.text_content()
 
 
 def parseHTML(html_content):
@@ -78,8 +82,8 @@ def parseHTML(html_content):
         th.append(div.text_content())
     # p(th,len(th))
 
-    wl,i = [],0
-    for tr in root.xpath('//div[@class="content"]/div/dd/table[@class="weather-table"]/tbody[@class="weather-table__body"]'):
+    wl = []
+    for i,tr in enumerate(root.xpath('//div[@class="content"]/div/dd/table[@class="weather-table"]/tbody[@class="weather-table__body"]')):
         trl = []
         # trl.append([dyl[i],'',th[0],th[1],th[2],th[3]])
         trl.append([dyl[i],'','','','',''])
@@ -90,12 +94,12 @@ def parseHTML(html_content):
             tdl.append(td.xpath('td')[2].text_content())
             tdl.append(td.xpath('td')[3].text_content())
             tdl.append(td.xpath('td')[4].text_content())
-            tdl.append(td.xpath('td')[5].xpath('div/span/span')[0].text_content()+" "+td.xpath('td')[5].xpath('div/div/abbr')[0].attrib["title"])
+            tdl.append(isTrue(td.xpath('td')[5]))
             tdl.append(td.xpath('td')[6].text_content())            
             ###
             trl.append(tdl)
         wl.append(trl)
-        i+=1
+        
     # p(wl, len(wl))           
 
     return {'TITLE':headers,'HEADER':th,'ITEMS':wl}
@@ -113,13 +117,13 @@ def main():
             'ufa':'https://yandex.ru/pogoda/ufa/details',
             'chelyabinsk':'https://yandex.ru/pogoda/chelyabinsk/details',
         }
-    weather = parseHTML(get_html(url['moscow']))
+    weather = parseHTML(get_html(url['kaliningrad']))
     if weather:
-        with open('weather.pickle', 'wb') as f:
-            pickle.dump(weather, f)
+        with open('weather.txt', 'w', encoding='utf-8') as f:
+            json.dump(weather, f)
     else:
-        with open('weather.pickle', 'rb') as f:
-            weather = pickle.load(f)
+        with open('weather.txt', 'r', encoding='utf-8') as f:
+            weather = json.load(f)
     # p(weather)
     ###
     root = tk.Tk()

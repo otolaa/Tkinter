@@ -16,18 +16,16 @@ class Table(tk.Frame):
         table["displaycolumns"] = headings
         # формируем заголовок таблицы
         for head in headings:
-            #print (head)
+            # print (head)
             anchor = 'w' if head == 'ID' or head == 'Name' else 'c'
             width = 50 if head == 'ID' else 100
             if head == 'Name':
                 width = 150
-            table.heading(head, text=head, anchor='c')
+            table.heading(head, text=head.upper(), anchor='c')
             table.column(head, width=width, anchor=anchor)
-        # формируем значение в cтроках
-        i = 0
-        for row in rows:
+        # формируем значение в cтроках        
+        for i,row in enumerate(rows):
             table.insert('', 'end', text='L'+str(i), values=list(row))
-            i+=1
 
         scrolltable = tk.Scrollbar(self, command=table.yview)
         table.configure(yscrollcommand=scrolltable.set)
