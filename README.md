@@ -1,5 +1,5 @@
-# Tkinter
-programs written on a Python using Tkinter
+# Python && Tkinter
+small programs written on a Python using Tkinter
 ## 1. calculator.py
 simple calculator, for windows, launching the program: python calculator.py
 
