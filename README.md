@@ -20,3 +20,4 @@ parsing kinopoisk.ru/afisha/city/490/ or kinopoisk.ru/afisha/city/1/, launching 
 
 ## 5. /coun-files/countFiles.py
 counting the number of lines in a file folder
+![countFiles.py](https://github.com/otolaa/Tkinter/blob/master/img/countFiles.jpg "countFiles.py")
