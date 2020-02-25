@@ -1,5 +1,13 @@
-# Python and Tkinter
-small programs written on a Python using Tkinter
+# Python and PySimpleGUI
+small programs written on a Python using PySimpleGUI
+
+## 0. /coun-files/countFilesGUI.py && /coun-files/countFiles.py
+counting the number of lines in a file folder
+
+![countFilesGUI.py](https://github.com/otolaa/Tkinter/blob/master/img/countFilesGUI.jpg "countFilesGUI.py")
+
+![countFiles.py](https://github.com/otolaa/Tkinter/blob/master/img/countFiles.jpg "countFiles.py")
+
 ## 1. calculator.py
 simple calculator, for windows, launching the program: python calculator.py
 
@@ -17,8 +25,3 @@ parsing yandex.ru/pogoda/moscow/details or yandex.ru/pogoda/saint-petersburg/det
 parsing kinopoisk.ru/afisha/city/490/ or kinopoisk.ru/afisha/city/1/, launching the program: python kinopoisk.py
 
 ![parsing kinopoisk.ru](https://github.com/otolaa/Tkinter/blob/master/img/kino.jpg "parsing kinopoisk.ru")
-
-## 5. /coun-files/countFiles.py
-counting the number of lines in a file folder
-
-![countFiles.py](https://github.com/otolaa/Tkinter/blob/master/img/countFiles.jpg "countFiles.py")
