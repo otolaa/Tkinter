@@ -3,10 +3,10 @@
 Подсчитывает размер файлов в кБайт  
 Подсчитывает общее количество строк кода во всех файлах, пропуская строчки длиной меньше 5 символов
 
-### скрипт GUI
+### /coun-files/countFilesGUI.py
 
 ![countFilesGUI.py](https://github.com/otolaa/Tkinter/blob/master/img/countFilesGUI.jpg "countFilesGUI.py")
 
-### скрипт
+### /coun-files/countFiles.py
 
 ![countFiles.py](https://github.com/otolaa/Tkinter/blob/master/img/countFiles.jpg "countFiles.py")
