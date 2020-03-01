@@ -1,5 +1,5 @@
 # подсчет файлов с определенным расширении в определенной папке
-# модуль os https://pythonworld.ru/moduli/modul-os-path.html
+# модуль os https://pythonworld.ru/moduli/modul-os-path.html 
 import sys
 import json # сохраняем все в json
 import os
