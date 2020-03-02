@@ -12,8 +12,12 @@ except Exception as e:
     with open('icon/setting.txt', 'w', encoding='utf-8') as f:
         json.dump(setting, f)
 
-lang = 'icon/lang_ru.py' if setting['lang'] == 'RU' else 'icon/lang_en.py'
-exec(open(lang, encoding='utf-8').read())
+# import lang form and return LF = dict
+sys.path.append("icon\\")
+if setting['lang'] == 'RU':
+    from lang_ru import *
+else:
+    from lang_en import *
 
 def p(text, *args):
     print(text, *args, sep = ' / ', end = '\n')
