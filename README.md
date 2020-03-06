@@ -8,6 +8,11 @@ counting the number of lines in a file folder
 
 ![countFiles.py](https://github.com/otolaa/Tkinter/blob/master/img/countFiles.jpg "countFiles.py")
 
+## 01. /cbr/cbrGUI.py
+parsing exchange rates in a table PySimpleGUI
+
+![cbrGUI.py](https://github.com/otolaa/Tkinter/blob/master/img/cbrGUI.jpg "cbrGUI.py")
+
 ## 1. calculator.py
 simple calculator, for windows, launching the program: python calculator.py
 
