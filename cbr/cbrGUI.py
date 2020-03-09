@@ -54,6 +54,7 @@ def main():
     # ------ the table ------
     favicon = "favicon.ico" # the icon from windows
     sg.theme('Dark')
+    sg.SetOptions(icon = favicon, button_color=('#000','#A6B2BE'), auto_size_buttons=False)
     # ------ Window Layout ------
     layout = [[sg.Table(values=rows, headings=headings, max_col_width=25,
                 # background_color='light blue',
@@ -66,7 +67,7 @@ def main():
                 key='-TABLE-',
                 tooltip=('This is a table').upper())]]
     # ------ Create Window ------
-    window = sg.Window(('Exchange rates on ').upper() + cur['DATE'], layout, icon = favicon)
+    window = sg.Window(('Exchange rates on ').upper() + cur['DATE'], layout)
     w2_active = False
     while True:
         event, values = window.read(timeout=100)
@@ -77,7 +78,7 @@ def main():
             r = [ str(x) for x in rows[values['-TABLE-'][0]] ]
             #p(r)
             l2 = [[sg.Text(", ".join(r), size=(40, 3))],[sg.Button('Exit', size=(40, 1), key='_exit_')]]
-            w2 = sg.Window(r[2] + ' ' + cur['DATE'], l2, icon = favicon)
+            w2 = sg.Window(r[2] + ' ' + cur['DATE'], l2)
         if w2_active:
             ev2, vals2 = w2.read(timeout=100)
             if ev2 is None or ev2 == '_exit_':

@@ -47,7 +47,7 @@ def main():
     favicon = "icon\\favicon.ico" # the icon from windows
     expansion = '.php, .less, .scss' # file extension
     sg.theme('Dark')   # Add a touch of color
-    sg.SetOptions(auto_size_buttons=False)
+    sg.SetOptions(icon = favicon, button_color=('#000','#A6B2BE'), auto_size_buttons=False)
     # Menu Definition
     menu_def = [[LF['CF_MENU_FILE'], [LF['CF_MENU_LANG'], ['EN','RU'], LF['CF_MENU_EXIT']+'::_exit_']],[LF['CF_MENU_HELP'], LF['CF_MENU_ABOUT_LINK']+'::_about_']]
     # All the stuff inside your window.
@@ -59,7 +59,7 @@ def main():
                 [sg.Button(LF['CF_RUN'], key='_ok_'), sg.Button(LF['CF_CLOSE'], key='_cansel_')] ]
 
     # Create the Window
-    window = sg.Window(LF['CF_TITLE'], layout, icon = favicon)
+    window = sg.Window(LF['CF_TITLE'].upper(), layout)
     # Event Loop to process "events" and get the "values" of the inputs
     while True:
         event, values = window.read()
@@ -87,7 +87,7 @@ def main():
                 errorForm.append(LF['CF_ERROR_EXPANSION'])
             
             if len(errorForm) > 0:
-                sg.popup("\n".join(errorForm), icon = favicon, no_titlebar=True) 
+                sg.popup("\n".join(errorForm), no_titlebar=True) 
             else:
                 farr = []
                 sm = 0
