@@ -67,13 +67,22 @@ def main():
                 tooltip=('This is a table').upper())]]
     # ------ Create Window ------
     window = sg.Window(('Exchange rates on ').upper() + cur['DATE'], layout, icon = favicon)
+    w2_active = False
     while True:
-        event, values = window.read()
+        event, values = window.read(timeout=100)
         if event in (None, '_cansel_'):   # if user closes window or clicks cancel
             break
-        if event == '-TABLE-':
-            p(rows[values['-TABLE-'][0]])
-
+        if not w2_active and event == '-TABLE-':
+            w2_active = True
+            r = [ str(x) for x in rows[values['-TABLE-'][0]] ]
+            #p(r)
+            l2 = [[sg.Text(", ".join(r), size=(40, 3))],[sg.Button('Exit', size=(40, 1), key='_exit_')]]
+            w2 = sg.Window(r[2] + ' ' + cur['DATE'], l2, icon = favicon)
+        if w2_active:
+            ev2, vals2 = w2.read(timeout=100)
+            if ev2 is None or ev2 == '_exit_':
+                w2_active  = False
+                w2.close()
     window.close()
 
 if __name__ == '__main__':

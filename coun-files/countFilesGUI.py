@@ -46,7 +46,7 @@ def correct_encoding(path):
 def main():    
     favicon = "icon\\favicon.ico" # the icon from windows
     expansion = '.php, .less, .scss' # file extension
-    sg.theme('DarkAmber')   # Add a touch of color
+    sg.theme('Dark')   # Add a touch of color
     # Menu Definition
     menu_def = [[LF['CF_MENU_FILE'], [LF['CF_MENU_LANG'], ['EN','RU'], LF['CF_MENU_EXIT']+'::_exit_']],[LF['CF_MENU_HELP'], LF['CF_MENU_ABOUT_LINK']+'::_about_']]
     # All the stuff inside your window.
