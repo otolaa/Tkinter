@@ -47,6 +47,7 @@ def main():
     favicon = "icon\\favicon.ico" # the icon from windows
     expansion = '.php, .less, .scss' # file extension
     sg.theme('Dark')   # Add a touch of color
+    sg.SetOptions(auto_size_buttons=False)
     # Menu Definition
     menu_def = [[LF['CF_MENU_FILE'], [LF['CF_MENU_LANG'], ['EN','RU'], LF['CF_MENU_EXIT']+'::_exit_']],[LF['CF_MENU_HELP'], LF['CF_MENU_ABOUT_LINK']+'::_about_']]
     # All the stuff inside your window.
@@ -54,7 +55,7 @@ def main():
                 [sg.Menu(menu_def, tearoff=True)],
                 [sg.Text(LF['CF_EXPANSION'], size=(18, 1)), sg.InputText(default_text=expansion, key='_expansion_')],
                 [sg.Text(LF['CF_PATH'], size=(18, 1)), sg.InputText(key='_path_'), sg.FolderBrowse(LF['CF_PATH_BUTTON'], key='_browse_')],
-                [sg.Multiline(default_text=LF['CF_MESSAGE'], size=(75, 5), key='_message_', autoscroll=True)],
+                [sg.Multiline(default_text=LF['CF_MESSAGE'], size=(80, 5), key='_message_', autoscroll=True)],
                 [sg.Button(LF['CF_RUN'], key='_ok_'), sg.Button(LF['CF_CLOSE'], key='_cansel_')] ]
 
     # Create the Window
