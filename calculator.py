@@ -5,8 +5,7 @@ from tkinter import ttk
 
 root = Tk()
 root.title("Калькулятор")
-#root.geometry("500x250+100+50")
-root.resizable(False,False)
+root.geometry("500x310")
 # логика калькулятора
 def calc(key):
     global memory
@@ -40,23 +39,24 @@ def calc(key):
             calc_entry.delete(0,END)
         calc_entry.insert(END, key)
         
+for c in range(5): root.columnconfigure(index=c, weight=1)
+for r in range(5): root.rowconfigure(index=r, weight=1)
+
 # Создание всех кнопок
-bttn_list = [
-    '7', "8", "9", "+", "-",
-    '4', "5", "6", "*", "/",
-    '1', "2", "3", "**", "** 0.5",
-    "0", ".", "C", "-/+", "="
-]
-r,c = 1,0
-for i in bttn_list:
-    rel = ""
-    cmd = lambda x = i: calc(x)
-    ttk.Button(root, text=i, command=cmd).grid(row=r, column=c)
-    c += 1
-    if c > 4:
-        c = 0
-        r += 1
+bttn_list = ['7',"8","9","+","-",'4',"5","6","*","/",'1',"2","3","**","** 0.5","0",".","C","-/+","="]
+
+btn = 0
+for r in range(5):
+    if r == 0: continue
+    for c in range(5):
+        if bttn_list[btn] is None: continue
+        cmd = lambda x = bttn_list[btn]: calc(x)
+        ttk.Button(root, text=bttn_list[btn], command=cmd).grid(row=r, column=c, sticky=NSEW)
+        # print(f"({r},{c}, {btn}, {bttn_list[btn]})")
+        btn += 1
 
 calc_entry = Entry(root, width=20, bd=2, font="Helvetica 30 normal", justify="center")
-calc_entry.grid(row=0, column=0, columnspan=5)
-root.mainloop()
+calc_entry.grid(row=0, column=0, columnspan=5, sticky=NSEW)
+
+if __name__ == '__main__':
+    root.mainloop()
