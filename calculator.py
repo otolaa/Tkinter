@@ -6,11 +6,11 @@ from tkinter import ttk
 root = Tk()
 root.title("Калькулятор")
 root.geometry("500x310")
-# логика калькулятора
-def calc(key):
+
+def calc(key): # логика калькулятора
     global memory
     if key == "=":
-        # сключение написание букв
+        # исключение написание букв
         strl = "-+0123456789.*/"
         if calc_entry.get()[0] not in strl:
             calc_entry.insert(END, " Первый символ не число")

@@ -35,3 +35,5 @@ parsing kinopoisk.ru/afisha/city/490/ or kinopoisk.ru/afisha/city/1/, launching 
 beautiful interface wrapper for Tkinter
 
 ![customtkinter](https://github.com/otolaa/Tkinter/blob/master/img/custom_login.png "customtkinter")
+![grid](https://github.com/otolaa/Tkinter/blob/master/img/custom_grid.png "grid")
+![calc](https://github.com/otolaa/Tkinter/blob/master/img/custom_calc.png "calc")
