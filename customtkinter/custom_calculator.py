@@ -1,5 +1,4 @@
 import tkinter
-import tkinter.messagebox
 import customtkinter
 
 customtkinter.set_appearance_mode("dark")  # Modes: system (default), light, dark
@@ -24,11 +23,43 @@ b = 0
 for r in range(5):
     if r == 0: continue
     for c in range(5):
-        fg_color = '#9a2fa5' if btns[b]=='=' else '#2fa572'
-        # hover_color
-        btn = customtkinter.CTkButton(master=root, text=btns[b], font=font_btn, fg_color=fg_color)
+        cmd = lambda x = btns[b]: calcul(x)
+        btn = customtkinter.CTkButton(master=root, text=btns[b], font=font_btn, command=cmd)
+        if btns[b]=='=':
+            btn.configure(fg_color='#9a2fa5', hover_color='#671f6f')
         btn.grid(row=r, column=c, ipadx=6, ipady=6, padx=4, pady=4, sticky="nsew")
         b += 1
+
+# the calculator
+def calcul(x):
+    if "=" in c_entry.get():
+        c_entry.delete(0,"end")
+        return
+
+    if x == "=":
+        try:
+            result = eval(c_entry.get())
+            c_entry.insert("end","="+str(result))
+        except:
+            mw = customtkinter.CTkToplevel(root)
+            mw.title('Error')
+            mw.geometry("300x100")
+            customtkinter.CTkLabel(mw, text="Check the data...").pack(side="top", fill="both", expand=True, padx=40, pady=40)
+        return
+
+    if x == "C":
+        c_entry.delete(0, "end")
+        return  
+
+    if x == "-/+":
+        if c_entry.get()[0] == "-":
+            c_entry.delete(0)
+        else:
+            c_entry.insert(0,"-")
+        return
+
+    c_entry.insert("end", x)
+    return
 
 if __name__ == '__main__':
     root.mainloop()
